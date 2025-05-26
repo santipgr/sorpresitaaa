@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre con Papel Animado</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #f59df8, #97e1fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .envelope-container {
+      position: relative;
+      width: 90vw;
+      max-width: 360px;
+      height: 220px;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+
+    .paper {
+      position: absolute;
+      width: 90%;
+      height: 60vh;
+      background: #fffbe6;
+      top: 150px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 0 1px #f1e5c6;
+      z-index: 1;
+      opacity: 0;
+      transition: top 0.8s ease, opacity 0.8s ease, z-index 0s linear 0.8s;
+      font-family: 'Georgia', serif;
+      background-image: linear-gradient(transparent 95%, rgba(0,0,0,0.05) 96%);
+      background-size: 100% 1.5em;
+      overflow-y: auto;
+      clip-path: inset(0% round 6px);
+    }
+
+    .paper.open {
+      top: 0;
+      opacity: 1;
+      z-index: 3; /* se eleva por encima del sobre y el corazón */
+      transition: top 0.8s ease, opacity 0.8s ease, z-index 0s;
+    }
+
+    .paper h3 {
+      margin-top: 0;
+      color: #b03a48;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .paper p {
+      font-size: 1rem;
+      white-space: pre-line;
+      line-height: 1.5;
+    }
+
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 150px;
+      bottom: 0;
+      background: #c9759c;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .envelope:before {
+      content: "";
+      position: absolute;
+      top: -75px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 75px 50% 0 50%;
+      border-color: #ffffff transparent transparent transparent;
+    }
+
+    .heart {
+      position: absolute;
+      width: 40px;
+      height: 36px;
+      background: #660000;
+      bottom: 55px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-45deg);
+      z-index: 2; /* cambiado de 4 a 2 para quedar detrás de la carta */
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 36px;
+      background: #660000;
+      border-radius: 50%;
+    }
+
+    .heart:before {
+      top: -20px;
+      left: 0;
+    }
+
+    .heart:after {
+      top: 0;
+      left: 20px;
+    }
+
+    @media (max-width: 500px) {
+      .paper {
+        height: 65vh;
+        padding: 16px;
+        font-size: 0.95rem;
+      }
+
+      .paper.open {
+        top: 0;
+      }
+
+      .paper h3 {
+        font-size: 1rem;
+      }
+
+      .paper p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-container" onclick="alternarCarta()" role="button" aria-label="Abrir carta">
+    <div class="paper" id="paper">
+      <h3>PARA EL AMOR DE MI VIDA</h3>
+      <p>Te amo mucho mi amor y quiero que lo sepas y nunca dudes de eso. 
+Yo quiero que sepas que yo estoy enamorado tuyo y exploto de amor por vos. 
+Me haces sentir cosas hermosas y más allá de nuestras peleas no quiero que esto se termine nunca. Te amo con todo lo que te incluye y te elijo una y un millón de veces más.
+Te quiero en mi vida siempre, y a mi lado también en todo. Te quiero con todo lo que te incluye y quiero cumplir todo lo que dijimos juntitos.
+Sé que soy medio pelotudo por dejarme llevar por lo que me dicen y te pido perdón por eso, pero quiero que sepas que voy a hacer lo que haga falta para que tengamos una relación hermosa, sin tantas peleas, porque te amo.
+Y te lo reitero: estoy enamorado tuyo, exploto de amor por vos y me haces tan bien que no te das cuenta. Siento cosas que nunca sentí, por eso te quiero siempre conmigo. Sos la persona más hermosa que me pudo tocar para estar a mi lado, y agradezco siempre por eso.
+Este detallito es para vos, con todo el amor del alma que me sale por vos.
+
+ATT: Te ama con el alma, tu chiquito (o el chico frío).
+</p>
+    </div>
+    <div class="envelope"></div>
+    <div class="heart"></div>
+  </div>
+
+  <script>
+    function alternarCarta() {
+      const papel = document.getElementById("paper");
+      papel.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
+
